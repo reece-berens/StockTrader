@@ -10,7 +10,7 @@ namespace StockNetworkTester
     class NetworkHandler
     {
         private string _apiKey = "MN8CB1O488THB5K2";
-        public enum RequestFunctionEnum { IntraDayInfo, DailyInfo, WeeklyInfo };
+        public enum RequestFunctionEnum { IntraDayInfo, DailyInfo, WeeklyInfo, BatchInfo };
         private RequestFunctionEnum _requestFunction;
         private string _url;
         private List<string> _stockList;
@@ -26,24 +26,25 @@ namespace StockNetworkTester
         public string GetStockData()
         {
             //Build URL to send
-            _url = BuildURL();
+            string toSend = BuildURL();
             Console.WriteLine(_url);
 
 
             //Send URL and return data
             string response;
-            response = new WebClient().DownloadString(_url);
+            response = new WebClient().DownloadString(toSend);
             return response;
         }
 
         private string BuildURL()
         {
             string ret = _url;
-            switch (_requestFunction)
+            switch (RequestFunction)
             {
                 case RequestFunctionEnum.IntraDayInfo:
                     ret += "function=TIME_SERIES_INTRADAY";
                     ret += "&symbol=" + SingleStock;
+                    ret += "&interval=5min";
                     break;
                 case RequestFunctionEnum.DailyInfo:
                     ret += "function=TIME_SERIES_DAILY";
@@ -52,6 +53,21 @@ namespace StockNetworkTester
                 case RequestFunctionEnum.WeeklyInfo:
                     ret += "function=TIME_SERIES_WEEKLY";
                     ret += "&symbol=" + SingleStock;
+                    break;
+                case RequestFunctionEnum.BatchInfo:
+                    ret += "function=BATCH_STOCK_QUOTES";
+                    ret += "&symbols=";
+                    int num = 0;
+                    foreach (string s in StockList)
+                    {
+                        if (num > 100) //The API can't have more than 100 entries in 1 call
+                            break;
+                        if (num == StockList.Count - 1)
+                            ret += s;
+                        else
+                            ret += s + ",";
+                        num++;
+                    }
                     break;
             }
             ret += "&apikey=" + _apiKey;
@@ -76,6 +92,18 @@ namespace StockNetworkTester
             set
             {
                 _singleStock = value;
+            }
+        }
+
+        public RequestFunctionEnum RequestFunction
+        {
+            get
+            {
+                return _requestFunction;
+            }
+            set
+            {
+                _requestFunction = value;
             }
         }
         #endregion
