@@ -43,6 +43,7 @@
             this.uxBtnGetPrices.TabIndex = 0;
             this.uxBtnGetPrices.Text = "Get Prices";
             this.uxBtnGetPrices.UseVisualStyleBackColor = true;
+            this.uxBtnGetPrices.Click += new System.EventHandler(this.GetPrices_Click);
             // 
             // uxBtnAddStock
             // 
