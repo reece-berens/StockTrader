@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientTesterConsole", "Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerTester", "ServerTester\ServerTester.csproj", "{C79F5D19-1DF2-43F9-996C-AEA1347AAFA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventLib", "EventLib\EventLib.csproj", "{7FFA1720-45EC-41E4-BAD4-4D9618B2B7B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C79F5D19-1DF2-43F9-996C-AEA1347AAFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C79F5D19-1DF2-43F9-996C-AEA1347AAFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C79F5D19-1DF2-43F9-996C-AEA1347AAFA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FFA1720-45EC-41E4-BAD4-4D9618B2B7B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FFA1720-45EC-41E4-BAD4-4D9618B2B7B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FFA1720-45EC-41E4-BAD4-4D9618B2B7B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FFA1720-45EC-41E4-BAD4-4D9618B2B7B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
