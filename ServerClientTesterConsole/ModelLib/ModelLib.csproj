@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7FFA1720-45EC-41E4-BAD4-4D9618B2B7B2}</ProjectGuid>
+    <ProjectGuid>{BE62A2C0-7339-495B-9EC6-BB0A76D999FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EventLib</RootNamespace>
-    <AssemblyName>EventLib</AssemblyName>
+    <RootNamespace>ModelLib</RootNamespace>
+    <AssemblyName>ModelLib</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,11 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Event.cs" />
-    <Compile Include="EventData\EventData.cs" />
-    <Compile Include="EventData\LoginEventData.cs" />
-    <Compile Include="EventData\ServerResponseErrorData.cs" />
+    <Compile Include="Account.cs" />
+    <Compile Include="Portfolio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stock.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

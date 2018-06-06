@@ -10,8 +10,11 @@ namespace ServerTester
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("SERVER");
+            Logger logger = new Logger();
+            logger.LogMessage("SERVER");
             NetworkHandlerServer serverInstance = new NetworkHandlerServer();
+
+
             Console.ReadLine();
             serverInstance.EndServer();
         }

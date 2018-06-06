@@ -8,7 +8,7 @@ namespace ServerTester
 {
     public class Event
     {
-        public enum EventTypeEnum { NULLEVENTENUM, CreateAccount, LoginAttempt, ServerResponse };
+        public enum EventTypeEnum { NULLEVENTENUM, CreateAccount, LoginAttempt, ServerResponseSuccess, ServerResponseError };
 
         public static Event NULLEVENT = new Event(EventTypeEnum.NULLEVENTENUM, null);
 

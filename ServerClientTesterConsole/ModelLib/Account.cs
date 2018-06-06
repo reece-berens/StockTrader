@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventLib.EventData
+namespace ModelLib
 {
-    public class LoginEventData : EventData
+    public class Account
     {
-        private string _uname;
+        private string _username;
         private string _password;
 
-        public LoginEventData(string u, string p)
+        public Account(string u, string p)
         {
-            _uname = u;
+            _username = u;
             _password = p;
         }
 
@@ -22,11 +22,7 @@ namespace EventLib.EventData
         {
             get
             {
-                return _uname;
-            }
-            set
-            {
-                _uname = value;
+                return _username;
             }
         }
 
