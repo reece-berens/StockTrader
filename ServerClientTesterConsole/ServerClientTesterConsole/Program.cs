@@ -10,13 +10,9 @@ namespace ServerClientTesterConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("CLIENT");
             NetworkHandlerClient clientInstance = new NetworkHandlerClient();
+            ClientHandler clientHandler = new ClientHandler();
 
-            Console.Write("Send message: ");
-            string toSend = Console.ReadLine();
-
-            clientInstance.SendMessage(toSend);
             Console.ReadLine();
         }
     }

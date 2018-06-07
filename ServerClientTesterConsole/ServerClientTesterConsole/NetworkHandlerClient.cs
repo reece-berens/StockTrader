@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebSocketSharp;
+using Newtonsoft.Json;
+using EventLib;
 
 namespace ServerClientTesterConsole
 {
     class NetworkHandlerClient
     {
         private WebSocket clientSocket;
+        public static event ClientDelegates.ClientHandleEvent ClientEventHandler;
 
         public NetworkHandlerClient()
         {
@@ -25,12 +28,30 @@ namespace ServerClientTesterConsole
 
         private void ReceiveMessage(object received, MessageEventArgs e)
         {
-            Console.WriteLine("Received from server: " + e.Data);
+            ClientEventHandler.Invoke(FromJson(e.Data));
         }
 
-        public void SendMessage(string msg)
+        public void SendMessage(Event e)
         {
-            clientSocket.Send(msg);
+            clientSocket.Send(ToJson(e));
+        }
+
+        private Event FromJson(string toConvert)
+        {
+            object e = JsonConvert.DeserializeObject<Event>(toConvert);
+            if (e is Event)
+            {
+                return (Event)e;
+            }
+            else
+            {
+                return Event.NULLEVENT;
+            }
+        }
+
+        private string ToJson(Event e)
+        {
+            return JsonConvert.SerializeObject(e);
         }
     }
 }
