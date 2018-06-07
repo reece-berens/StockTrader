@@ -10,7 +10,6 @@ namespace ServerClientTesterConsole
     {
         static void Main(string[] args)
         {
-            NetworkHandlerClient clientInstance = new NetworkHandlerClient();
             ClientHandler clientHandler = new ClientHandler();
 
             Console.ReadLine();

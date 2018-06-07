@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EventLib;
+using EventLib.EventData;
 using ModelLib;
 using Newtonsoft.Json;
 
@@ -12,10 +13,13 @@ namespace ServerClientTesterConsole
     public class ClientHandler
     {
         Logger logger;
+        Account account;
+        NetworkHandlerClient networkHandler;
 
         public ClientHandler()
         {
             logger = new Logger();
+            networkHandler = new NetworkHandlerClient();
             NetworkHandlerClient.ClientEventHandler += HandleMessage;
         }
 
@@ -31,10 +35,29 @@ namespace ServerClientTesterConsole
                     //Something didn't go too well
                     break;
 
+                case Event.EventTypeEnum.ServerSendAccount:
+                    //Get user's data from the server
+                    account = (Account)e.EventData;
+                    break;
+
                 case Event.EventTypeEnum.NULLEVENTENUM:
                     logger.ErrorMessage("Null event received in ClientHandler.HandleMessage");
                     break;
             }
+        }
+
+        public void CreateAccount()
+        {
+            string u = logger.PromptUser("Enter Username: ");
+            string p = logger.PromptUser("Enter Password: ");
+            networkHandler.SendMessage(new Event(Event.EventTypeEnum.CreateAccount, new LoginEventData(u, p)));
+        }
+
+        public void Login()
+        {
+            string u = logger.PromptUser("Enter Username: ");
+            string p = logger.PromptUser("Enter Password: ");
+            networkHandler.SendMessage(new Event(Event.EventTypeEnum.LoginAttempt, new LoginEventData(u, p)));
         }
     }
 }
