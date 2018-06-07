@@ -11,16 +11,18 @@ namespace ServerTester
 {
     class ServerResponse : WebSocketBehavior
     {
-        public static event ServerDelegateHandler.LoggerNormalMessage srvRespLogNormMsg;
-        public static event ServerDelegateHandler.LoggerErrorMessage srvRespLogErrMsg;
+        public static event ServerDelegates.ServerHandleEvent handleEvent;
+
         protected override void OnMessage(MessageEventArgs eventArg)
         {
             Event e = FromJson(eventArg.Data);
-            if (e == Event.NULLEVENT)
-            {
-                srvRespLogErrMsg.Invoke(e);
-            }
-            //Send(e.Data + " from Server");
+            handleEvent.Invoke(this, e);
+        }
+
+        public void SendResponseToClient(Event e)
+        {
+            string toSend = ToJson(e);
+            Send(toSend);
         }
 
         private string ToJson(Event toConvert)

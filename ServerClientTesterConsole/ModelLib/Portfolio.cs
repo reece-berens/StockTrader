@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace ModelLib
 {
-    class Portfolio
+    public class Portfolio
     {
         private double _cash;
         private double _investments;
         private double _overallAmt;
+        private List<Stock> _stockList;
 
         public Portfolio(double cashAmt)
         {
             _cash = cashAmt;
             _investments = 0;
             _overallAmt = cashAmt;
+            _stockList = new List<Stock>();
         }
 
         #region Getters/Setters
@@ -45,6 +47,14 @@ namespace ModelLib
             get
             {
                 return _cash + _investments;
+            }
+        }
+
+        public List<Stock> StockList
+        {
+            get
+            {
+                return _stockList;
             }
         }
         #endregion

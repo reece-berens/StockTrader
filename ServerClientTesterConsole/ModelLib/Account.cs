@@ -10,11 +10,13 @@ namespace ModelLib
     {
         private string _username;
         private string _password;
+        private Portfolio _portfolio;
 
         public Account(string u, string p)
         {
             _username = u;
             _password = p;
+            _portfolio = new Portfolio(1000);
         }
 
         #region Getters/Setters
@@ -35,6 +37,14 @@ namespace ModelLib
             set
             {
                 _password = value;
+            }
+        }
+
+        public Portfolio AccountPortfolio
+        {
+            get
+            {
+                return _portfolio;
             }
         }
         #endregion

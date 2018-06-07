@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebSocketSharp.Server;
+using Newtonsoft.Json;
 
 namespace ServerTester
 {
@@ -21,6 +22,12 @@ namespace ServerTester
         public void EndServer()
         {
             wss.Stop();
+        }
+
+        public void SendEvent(Event e)
+        {
+            string toSend = JsonConvert.SerializeObject(e);
+            
         }
     }
 }
