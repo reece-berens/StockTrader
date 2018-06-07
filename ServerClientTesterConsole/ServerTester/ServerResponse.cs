@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 using Newtonsoft.Json;
+using EventLib;
 
 namespace ServerTester
 {
@@ -15,8 +16,7 @@ namespace ServerTester
 
         protected override void OnMessage(MessageEventArgs eventArg)
         {
-            Event e = FromJson(eventArg.Data);
-            handleEvent.Invoke(this, e);
+            handleEvent?.Invoke(this, FromJson(eventArg.Data));
         }
 
         public void SendResponseToClient(Event e)
