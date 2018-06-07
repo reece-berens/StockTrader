@@ -8,10 +8,10 @@ using EventLib.EventData;
 
 namespace ServerTester
 {
-    class ServerDelegates
+    public class ServerDelegates
     {
-        protected delegate void ServerHandleEvent(ServerResponse s, Event e);
-        protected delegate void LoggerNormalMessage(ServerResponse s, Event e);
-        protected delegate void LoggerErrorMessage(ServerResponse s, Event e);
+        public delegate void ServerHandleEvent(ServerResponse s, Event e);
+        public delegate void LoggerNormalMessage(ServerResponse s, Event e);
+        public delegate void LoggerErrorMessage(ServerResponse s, Event e);
     }
 }

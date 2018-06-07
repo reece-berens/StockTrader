@@ -8,7 +8,7 @@ namespace EventLib
 {
     public class Event
     {
-        public enum EventTypeEnum { NULLEVENTENUM, CreateAccount, LoginAttempt, ServerResponseSuccess, ServerResponseError };
+        public enum EventTypeEnum { NULLEVENTENUM, CreateAccount, LoginAttempt, ServerResponseSuccess, ServerResponseError, ServerSendAccount };
 
         public static Event NULLEVENT = new Event(EventTypeEnum.NULLEVENTENUM, null);
 

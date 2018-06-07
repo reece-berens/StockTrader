@@ -41,10 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Event.cs" />
+    <Compile Include="EventData\AccountData.cs" />
     <Compile Include="EventData\EventData.cs" />
     <Compile Include="EventData\LoginEventData.cs" />
-    <Compile Include="EventData\ServerResponseErrorData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModelLib\ModelLib.csproj">
+      <Project>{be62a2c0-7339-495b-9ec6-bb0a76d999ff}</Project>
+      <Name>ModelLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

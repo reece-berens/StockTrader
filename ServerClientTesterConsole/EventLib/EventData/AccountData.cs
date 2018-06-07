@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ModelLib;
 
 namespace EventLib.EventData
 {
-    public class ServerResponseErrorData : EventData
+    public class AccountData : EventData
     {
-        private string _message;
+        private Account _a;
 
-        public ServerResponseErrorData(string s)
+        public AccountData(Account a)
         {
-            _message = s;
+            _a = a;
         }
 
         #region Getters/Setters
-        public string ErrorMessage
+        public Account AccData
         {
             get
             {
-                return _message;
+                return _a;
             }
         }
         #endregion

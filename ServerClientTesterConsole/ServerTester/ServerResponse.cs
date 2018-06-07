@@ -10,7 +10,7 @@ using EventLib;
 
 namespace ServerTester
 {
-    class ServerResponse : WebSocketBehavior
+    public class ServerResponse : WebSocketBehavior
     {
         public static event ServerDelegates.ServerHandleEvent handleEvent;
 
