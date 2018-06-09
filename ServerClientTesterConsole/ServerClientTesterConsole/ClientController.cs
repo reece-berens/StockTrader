@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using EventLib;
 using EventLib.EventData;
@@ -46,6 +47,7 @@ namespace ServerClientTesterConsole
                     logger.ErrorMessage("Null event received in ClientHandler.HandleMessage");
                     break;
             }
+            //MainLoop();
         }
 
         public void CreateAccount()
@@ -79,8 +81,9 @@ namespace ServerClientTesterConsole
                 {
                     logger.ErrorMessage("Invalid command. Try again");
                 }
+                Thread.Sleep(1000);
             }
-            logger.NormalMessage("You got an account! username is " + account.Uname);
+            logger.NormalMessage("You got an account! username is " + account.Username);
         }
     }
 }

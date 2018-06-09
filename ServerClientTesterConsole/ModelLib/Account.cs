@@ -20,7 +20,7 @@ namespace ModelLib
         }
 
         #region Getters/Setters
-        public string Uname
+        public string Username
         {
             get
             {

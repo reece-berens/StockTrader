@@ -54,7 +54,7 @@ namespace ServerTester
                     }
                     for (int i = 0; i < accountList.Count && canCreate; i++)
                     {
-                        string s = accountList.ElementAt(i).Uname;
+                        string s = accountList.ElementAt(i).Username;
                         if (s == createAccData.Username)
                         {
                             canCreate = false;
@@ -84,7 +84,7 @@ namespace ServerTester
                     LoginEventData loginData = JsonConvert.DeserializeObject<LoginEventData>(e.EventData.ToString());
                     for (int i = 0; i < accountList.Count && !found; i++)
                     {
-                        string u = accountList.ElementAt(i).Uname;
+                        string u = accountList.ElementAt(i).Username;
                         if (u == loginData.Username)
                         {
                             found = true;
