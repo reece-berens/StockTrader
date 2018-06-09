@@ -10,17 +10,19 @@ using Newtonsoft.Json;
 
 namespace ServerClientTesterConsole
 {
-    public class ClientHandler
+    public class ClientController
     {
         Logger logger;
         Account account;
         NetworkHandlerClient networkHandler;
 
-        public ClientHandler()
+        public ClientController()
         {
+            account = null;
             logger = new Logger();
             networkHandler = new NetworkHandlerClient();
             NetworkHandlerClient.ClientEventHandler += HandleMessage;
+            MainLoop();
         }
 
         public void HandleMessage(Event e)
@@ -58,6 +60,27 @@ namespace ServerClientTesterConsole
             string u = logger.PromptUser("Enter Username: ");
             string p = logger.PromptUser("Enter Password: ");
             networkHandler.SendMessage(new Event(Event.EventTypeEnum.LoginAttempt, new LoginEventData(u, p)));
+        }
+
+        public void MainLoop()
+        {
+            while (account == null)
+            {
+                string createOrLogin = logger.PromptUser("(C)reate Account or (L)ogin: ").ToUpper();
+                if (createOrLogin == "C")
+                {
+                    CreateAccount();
+                }
+                else if (createOrLogin == "L")
+                {
+                    Login();
+                }
+                else
+                {
+                    logger.ErrorMessage("Invalid command. Try again");
+                }
+            }
+            logger.NormalMessage("You got an account! username is " + account.Uname);
         }
     }
 }

@@ -20,11 +20,15 @@ namespace ModelLib
         }
 
         #region Getters/Setters
-        public string Username
+        public string Uname
         {
             get
             {
                 return _username;
+            }
+            set
+            {
+                _username = value;
             }
         }
 
@@ -45,6 +49,10 @@ namespace ModelLib
             get
             {
                 return _portfolio;
+            }
+            set
+            {
+                _portfolio = value;
             }
         }
         #endregion

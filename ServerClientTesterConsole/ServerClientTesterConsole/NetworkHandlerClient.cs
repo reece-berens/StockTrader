@@ -51,7 +51,7 @@ namespace ServerClientTesterConsole
 
         private string ToJson(Event e)
         {
-            return JsonConvert.SerializeObject(e);
+            return JsonConvert.SerializeObject(e, Formatting.None);
         }
     }
 }

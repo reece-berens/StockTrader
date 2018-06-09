@@ -10,8 +10,9 @@ namespace ServerClientTesterConsole
     {
         static void Main(string[] args)
         {
-            ClientHandler clientHandler = new ClientHandler();
+            ClientController clientHandler = new ClientController();
 
+            Console.WriteLine("Back in program");
             Console.ReadLine();
         }
     }

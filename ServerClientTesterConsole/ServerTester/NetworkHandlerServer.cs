@@ -24,11 +24,5 @@ namespace ServerTester
         {
             wss.Stop();
         }
-
-        public void SendEvent(Event e)
-        {
-            string toSend = JsonConvert.SerializeObject(e);
-            
-        }
     }
 }

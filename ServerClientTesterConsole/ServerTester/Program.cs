@@ -11,7 +11,7 @@ namespace ServerTester
         static void Main(string[] args)
         {
             NetworkHandlerServer serverInstance = new NetworkHandlerServer();
-            ServerHandler serverHandler = new ServerHandler();
+            ServerController serverController = new ServerController();
 
 
             Console.ReadLine();

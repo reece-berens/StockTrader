@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientDelegates.cs" />
-    <Compile Include="ClientHandler.cs" />
+    <Compile Include="ClientController.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="NetworkHandlerClient.cs" />
     <Compile Include="Program.cs" />

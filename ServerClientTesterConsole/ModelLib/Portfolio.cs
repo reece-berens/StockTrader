@@ -40,6 +40,10 @@ namespace ModelLib
             {
                 return _investments;
             }
+            set
+            {
+                _investments = value;
+            }
         }
 
         public double OverallAmount
@@ -48,6 +52,10 @@ namespace ModelLib
             {
                 return _cash + _investments;
             }
+            set
+            {
+                _overallAmt = value;
+            }
         }
 
         public List<Stock> StockList
@@ -55,6 +63,10 @@ namespace ModelLib
             get
             {
                 return _stockList;
+            }
+            set
+            {
+                _stockList = value;
             }
         }
         #endregion
