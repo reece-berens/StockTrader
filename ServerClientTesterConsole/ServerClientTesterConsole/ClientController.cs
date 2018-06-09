@@ -39,7 +39,7 @@ namespace ServerClientTesterConsole
 
                 case Event.EventTypeEnum.ServerSendAccount:
                     //Get user's data from the server
-                    account = (Account)e.EventData;
+                    account = JsonConvert.DeserializeObject<Account>(e.EventData.ToString());
                     break;
 
                 case Event.EventTypeEnum.NULLEVENTENUM:
