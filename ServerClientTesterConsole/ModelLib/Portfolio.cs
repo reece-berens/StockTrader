@@ -50,7 +50,8 @@ namespace ModelLib
         {
             get
             {
-                return _cash + _investments;
+                _overallAmt = _cash + _investments;
+                return _overallAmt;
             }
             set
             {

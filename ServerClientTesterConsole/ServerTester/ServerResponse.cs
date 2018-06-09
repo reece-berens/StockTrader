@@ -33,7 +33,7 @@ namespace ServerTester
 
         private string ToJson(Event toConvert)
         {
-            return JsonConvert.SerializeObject(toConvert);
+            return JsonConvert.SerializeObject(toConvert, Formatting.None);
         }
 
         private Event FromJson(string toConvert)
