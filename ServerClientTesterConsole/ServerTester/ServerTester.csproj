@@ -61,13 +61,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventLib\EventLib.csproj">
-      <Project>{7ffa1720-45ec-41e4-bad4-4d9618b2b7b2}</Project>
-      <Name>EventLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModelLib\ModelLib.csproj">
-      <Project>{be62a2c0-7339-495b-9ec6-bb0a76d999ff}</Project>
-      <Name>ModelLib</Name>
+    <ProjectReference Include="..\CoreLib\CoreLib.csproj">
+      <Project>{e22af46f-0ff4-47f6-b767-d63bfeeddf15}</Project>
+      <Name>CoreLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

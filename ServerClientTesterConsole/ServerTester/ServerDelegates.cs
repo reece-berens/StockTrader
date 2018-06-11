@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EventLib;
-using EventLib.EventData;
+using CoreLib;
+using CoreLib.EventData;
 
 namespace ServerTester
 {

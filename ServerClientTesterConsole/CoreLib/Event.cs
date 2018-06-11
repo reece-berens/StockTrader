@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
-namespace EventLib
+namespace CoreLib
 {
     public class Event
     {
@@ -20,6 +21,11 @@ namespace EventLib
         {
             _eventType = eType;
             _eventData = eData;
+        }
+
+        public T GetData<T>()
+        {
+            return ((JObject)_eventData).ToObject<T>();
         }
 
         #region Getters/Setters

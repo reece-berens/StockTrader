@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using WebSocketSharp.Server;
 using Newtonsoft.Json;
-using EventLib;
 
 namespace ServerTester
 {

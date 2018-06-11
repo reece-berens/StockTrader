@@ -7,7 +7,7 @@ using WebSocketSharp;
 using WebSocketSharp.Server;
 using Newtonsoft.Json;
 
-using EventLib;
+using CoreLib;
 
 namespace ServerTester
 {

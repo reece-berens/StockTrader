@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EventLib.EventData;
 
 namespace ServerTester
 {
@@ -14,14 +13,14 @@ namespace ServerTester
             Console.WriteLine("SERVER");
         }
 
-        public void NormalMessage(string s)
+        public void NormalMessage(string msg)
         {
-            Console.WriteLine(s);
+            Console.WriteLine(msg);
         }
 
-        public void ErrorMessage(string s)
+        public void ErrorMessage(string errorMsg)
         {
-            Console.WriteLine("ERROR: " + s);
+            Console.WriteLine("ERROR: " + errorMsg);
         }
     }
 }

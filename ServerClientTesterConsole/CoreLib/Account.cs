@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using CoreLib.EventData;
 
-namespace ModelLib
+namespace CoreLib
 {
     public class Account
     {
@@ -12,11 +14,32 @@ namespace ModelLib
         private string _password;
         private Portfolio _portfolio;
 
-        public Account(string u, string p)
+        public Account(object obj)
         {
-            _username = u;
-            _password = p;
+            Account temp = (Account)obj;
+            _username = temp.Username;
+            _password = temp.Password;
+            _portfolio = temp.AccountPortfolio;
+        }
+
+        public Account(string uname, string pword)
+        {
+            _username = uname;
+            _password = pword;
             _portfolio = new Portfolio(1000);
+        }
+
+        public Account (string uname, string pword, Portfolio port)
+        {
+            _username = uname;
+            _password = pword;
+            _portfolio = port;
+        }
+
+        //[JsonConstructor]
+        public Account (AccountData acc)
+        {
+            //Possibly need to implement
         }
 
         #region Getters/Setters

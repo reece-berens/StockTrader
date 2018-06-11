@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using EventLib;
-using EventLib.EventData;
-using ModelLib;
+using CoreLib;
+using CoreLib.EventData;
 using Newtonsoft.Json;
 
 namespace ServerClientTesterConsole
@@ -40,7 +39,8 @@ namespace ServerClientTesterConsole
 
                 case Event.EventTypeEnum.ServerSendAccount:
                     //Get user's data from the server
-                    account = JsonConvert.DeserializeObject<Account>(e.EventData.ToString());
+                    Account temp = e.GetData<Account>();
+                    account = e.GetData<Account>();
                     break;
 
                 case Event.EventTypeEnum.NULLEVENTENUM:
