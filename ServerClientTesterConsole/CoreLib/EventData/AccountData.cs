@@ -8,21 +8,15 @@ namespace CoreLib.EventData
 {
     public class AccountData : EventData
     {
-        private Account _a;
+        public string Username;
+        public string Password;
+        public Portfolio AccPortfolio;
 
         public AccountData(Account a)
         {
-            _a = a;
+            Username = a.Username;
+            Password = a.Password;
+            AccPortfolio = a.AccountPortfolio;
         }
-
-        #region Getters/Setters
-        public Account AccData
-        {
-            get
-            {
-                return _a;
-            }
-        }
-        #endregion
     }
 }

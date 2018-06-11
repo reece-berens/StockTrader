@@ -34,12 +34,11 @@ namespace ServerClientTesterConsole
                     break;
 
                 case Event.EventTypeEnum.ServerResponseError:
-                    //Something didn't go too well
+                    logger.ErrorMessage(e.EventData.ToString());
                     break;
 
                 case Event.EventTypeEnum.ServerSendAccount:
                     //Get user's data from the server
-                    Account temp = e.GetData<Account>();
                     account = e.GetData<Account>();
                     break;
 

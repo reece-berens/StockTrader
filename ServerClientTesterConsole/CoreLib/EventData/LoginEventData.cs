@@ -8,39 +8,13 @@ namespace CoreLib.EventData
 {
     public class LoginEventData : EventData
     {
-        private string _uname;
-        private string _password;
+        public string Username;
+        public string Password;
 
-        public LoginEventData(string u, string p)
+        public LoginEventData(string uname, string pword)
         {
-            _uname = u;
-            _password = p;
+            Username = uname;
+            Password = pword;
         }
-
-        #region Getters/Setters
-        public string Username
-        {
-            get
-            {
-                return _uname;
-            }
-            set
-            {
-                _uname = value;
-            }
-        }
-
-        public string Password
-        {
-            get
-            {
-                return _password;
-            }
-            set
-            {
-                _password = value;
-            }
-        }
-        #endregion
     }
 }

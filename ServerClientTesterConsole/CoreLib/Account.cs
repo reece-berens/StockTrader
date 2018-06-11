@@ -29,17 +29,12 @@ namespace CoreLib
             _portfolio = new Portfolio(1000);
         }
 
+        [JsonConstructor]
         public Account (string uname, string pword, Portfolio port)
         {
             _username = uname;
             _password = pword;
             _portfolio = port;
-        }
-
-        //[JsonConstructor]
-        public Account (AccountData acc)
-        {
-            //Possibly need to implement
         }
 
         #region Getters/Setters
