@@ -8,15 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using CoreLib;
-
-namespace Server
+namespace Client
 {
-    public partial class MainForm : Form
+    public partial class LoginForm : Form
     {
-        public MainForm()
+        public LoginForm()
         {
             InitializeComponent();
+        }
+
+        private void BtnCreateAccount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnLogin_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

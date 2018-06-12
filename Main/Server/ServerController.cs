@@ -112,22 +112,31 @@ namespace Server
 
         private void ReadData()
         {
-            //Read in text file of users
-            StreamReader sr = new StreamReader(ACCOUNT_FILE_PATH);
-            string data = sr.ReadToEnd();
-            accountList = JsonConvert.DeserializeObject<List<Account>>(data, new JsonSerializerSettings
+            try
             {
-                TypeNameHandling = TypeNameHandling.Auto,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                //Read in text file of users
+                StreamReader sr = new StreamReader(ACCOUNT_FILE_PATH);
+                string data = sr.ReadToEnd();
+                accountList = JsonConvert.DeserializeObject<List<Account>>(data, new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects,
 
-                ContractResolver = new MyContractResolver()
-            });
-            sr.Close();
+                    ContractResolver = new MyContractResolver()
+                });
+                sr.Close();
 
-            //Read in text file of stocks
-            sr = new StreamReader(STOCK_FILE_PATH);
-            stockList = JsonConvert.DeserializeObject<List<Stock>>(sr.ReadToEnd());
-            sr.Close();
+                //Read in text file of stocks
+                sr = new StreamReader(STOCK_FILE_PATH);
+                stockList = JsonConvert.DeserializeObject<List<Stock>>(sr.ReadToEnd());
+                sr.Close();
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("One or more files were not found. Creating blank lists now.");
+                accountList = new List<Account>();
+                stockList = new List<Stock>();
+            }
         }
 
         private void WriteData()

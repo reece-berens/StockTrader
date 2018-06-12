@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using CoreLib;
 using CoreLib.EventData;
@@ -11,9 +13,17 @@ namespace Client
 {
     public class ClientController
     {
+        public enum GUIHandleEnum { AttemptingLogin, LoginSuccessful, OpenStockDetailWindow, CloseStockDetailWindow, Logout };
+        public GUIHandleEnum ClientGUIState;
+
+        public event ClientDelegates.ClientSwitchGUI GUISwitchEvent;
+
         Logger logger;
         Account account;
         NetworkHandlerClient networkHandler;
+        public Form curForm;
+        public Form toOpen;
+        public Form toClose;
 
         public ClientController()
         {
@@ -21,7 +31,10 @@ namespace Client
             logger = new Logger();
             networkHandler = new NetworkHandlerClient();
             NetworkHandlerClient.ClientEventHandler += HandleMessage;
-            MainLoop();
+            GUISwitchEvent += GUIHandler;
+
+            ClientGUIState = GUIHandleEnum.AttemptingLogin;
+            GUIHandler(null);
         }
 
         public void HandleMessage(Event e)
@@ -82,6 +95,30 @@ namespace Client
                 Thread.Sleep(1000);
             }
             logger.NormalMessage("You got an account! username is " + account.Username);
+        }
+
+        public void GUIHandler(Form curForm)
+        {
+            switch (ClientGUIState)
+            {
+                case GUIHandleEnum.AttemptingLogin:
+                    //Open login window
+                    curForm = new LoginForm();
+                    curForm.ShowDialog();
+                    break;
+                case GUIHandleEnum.LoginSuccessful:
+                    //Close login and open main
+                    break;
+                case GUIHandleEnum.OpenStockDetailWindow:
+                    //Open a new detail window
+                    break;
+                case GUIHandleEnum.CloseStockDetailWindow:
+                    //Remove detail window from list and close window
+                    break;
+                case GUIHandleEnum.Logout:
+                    //Close menu and all detail windows and open login window
+                    break;
+            }
         }
     }
 }
