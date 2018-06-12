@@ -49,8 +49,9 @@
             this.uxBtn_Return.TabIndex = 1;
             this.uxBtn_Return.Text = "Return";
             this.uxBtn_Return.UseVisualStyleBackColor = true;
+            this.uxBtn_Return.Click += new System.EventHandler(this.BtnReturn_Click);
             // 
-            // DetailGUI
+            // DetailGUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -59,8 +60,9 @@
             this.Controls.Add(this.uxTB_DetailBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "DetailGUI";
+            this.Name = "DetailGUIForm";
             this.Text = "Detail GUI";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Closed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

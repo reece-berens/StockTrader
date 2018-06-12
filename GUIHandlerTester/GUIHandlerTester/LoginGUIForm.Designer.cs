@@ -76,8 +76,9 @@
             this.uxBtn_Login.TabIndex = 4;
             this.uxBtn_Login.Text = "Log In";
             this.uxBtn_Login.UseVisualStyleBackColor = true;
+            this.uxBtn_Login.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
-            // LoginGUI
+            // LoginGUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,8 +90,9 @@
             this.Controls.Add(this.uxLBL_Username);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "LoginGUI";
+            this.Name = "LoginGUIForm";
             this.Text = "Login GUI";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CloseForm);
             this.ResumeLayout(false);
             this.PerformLayout();
 
