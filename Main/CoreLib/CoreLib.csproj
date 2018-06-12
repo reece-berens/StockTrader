@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventData\AccountData.cs" />
     <Compile Include="EventData\IEventData.cs" />
+    <Compile Include="EventData\LoginEventData.cs" />
     <Compile Include="Portfolio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stock.cs" />
