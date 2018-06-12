@@ -95,6 +95,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainGUIForm";
             this.Text = "Main GUI Form";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosedMethod);
             this.ResumeLayout(false);
             this.PerformLayout();
 

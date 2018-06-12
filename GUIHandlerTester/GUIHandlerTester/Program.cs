@@ -15,6 +15,7 @@ namespace GUIHandlerTester
         public static Form toClose;
         public static Form toOpen;
         public static string DetailSymbol;
+        public static List<DetailGUIForm> detailForms;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -24,6 +25,7 @@ namespace GUIHandlerTester
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            detailForms = new List<DetailGUIForm>();
             ProgramGUIState = GUIStateEnum.AttemptingLogin;
             DetailSymbol = "";
             Application.Run(new LoginGUIForm());
@@ -50,14 +52,21 @@ namespace GUIHandlerTester
                 case GUIStateEnum.OpenDetail:
                     //Open detail GUI on new thread for a specific stock
                     toOpen = new DetailGUIForm(DetailSymbol);
-                    Thread detailThread = new Thread(StartDetailThread);
-                    detailThread.Start();
+                    detailForms.Add((DetailGUIForm)toOpen);
+                    toOpen.Show();
                     break;
                 case GUIStateEnum.CloseDetail:
                     //Close detail GUI
+                    detailForms.Remove((DetailGUIForm)toClose);
+                    toClose.Dispose();
                     break;
                 case GUIStateEnum.Logout:
                     //Close main GUI and open login GUI
+                    foreach (DetailGUIForm f in detailForms)
+                    {
+                        f.Dispose();
+                    }
+                    detailForms = new List<DetailGUIForm>();
                     toOpen = new LoginGUIForm();
                     if (toClose.InvokeRequired)
                     {
@@ -72,11 +81,5 @@ namespace GUIHandlerTester
                     break;
             }
         }
-
-        static void StartDetailThread()
-        {
-            toOpen.ShowDialog();
-        }
-
     }
 }

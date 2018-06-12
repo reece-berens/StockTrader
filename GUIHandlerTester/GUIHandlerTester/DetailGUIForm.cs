@@ -12,7 +12,7 @@ namespace GUIHandlerTester
 {
     public partial class DetailGUIForm : Form
     {
-        string symbol;
+        public string symbol;
 
         public DetailGUIForm()
         {
@@ -35,12 +35,9 @@ namespace GUIHandlerTester
 
         private void BtnReturn_Click(object sender, EventArgs e)
         {
-            this.Dispose();
-        }
-
-        private void Form_Closed(object sender, FormClosedEventArgs e)
-        {
-            this.Dispose();
+            Program.toClose = this;
+            Program.ProgramGUIState = Program.GUIStateEnum.CloseDetail;
+            Program.SwitchGUI();
         }
     }
 }

@@ -17,6 +17,7 @@ namespace GUIHandlerTester
         {
             InitializeComponent();
             stockList = new List<string>();
+            uxBtn_Detail.Enabled = false;
         }
 
         private void BtnDetails_Click(object sender, EventArgs e)
@@ -39,12 +40,18 @@ namespace GUIHandlerTester
         {
             //Add symbol to list
             stockList.Add(uxTB_SymbolToAdd.Text);
+            uxBtn_Detail.Enabled = true;
             UpdateLB();
         }
 
         private void UpdateLB()
         {
             uxLB_StockList.DataSource = new List<string>(stockList);
+        }
+
+        private void FormClosedMethod(object sender, FormClosedEventArgs e)
+        {
+            BtnLogout_Click(null, null);
         }
     }
 }
