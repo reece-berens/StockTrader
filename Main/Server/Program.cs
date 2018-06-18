@@ -8,6 +8,9 @@ namespace Server
 {
     static class Program
     {
+        public static Form MainForm;
+        public static ServerController serverController;
+        public static NetworkHandlerServer networkHandler;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +19,11 @@ namespace Server
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            MainForm = new MainForm();
+            serverController = new ServerController();
+            networkHandler = new NetworkHandlerServer();
+            Application.Run(MainForm);
         }
     }
 }

@@ -4,23 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Windows.Forms;
+
 namespace Server
 {
     class Logger
     {
+        MainForm mainForm = (MainForm)Program.MainForm;
         public Logger()
         {
-            Console.WriteLine("SERVER");
+            mainForm.AddActivity("SERVER");
         }
 
         public void NormalMessage(string msg)
         {
-            Console.WriteLine(msg);
+            mainForm.AddActivity(msg);
         }
 
         public void ErrorMessage(string errorMsg)
         {
-            Console.WriteLine("ERROR: " + errorMsg);
+            mainForm.AddActivity("ERROR: " + errorMsg);
         }
     }
 }

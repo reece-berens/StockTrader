@@ -34,7 +34,7 @@
             this.uxLB_UserList = new System.Windows.Forms.ListBox();
             this.uxLBL_UserList = new System.Windows.Forms.Label();
             this.uxLBL_ServerIP = new System.Windows.Forms.Label();
-            this.uxLB_Transactions = new System.Windows.Forms.ListBox();
+            this.uxLB_Activity = new System.Windows.Forms.ListBox();
             this.uxLBL_TransactionList = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -92,23 +92,23 @@
             this.uxLBL_ServerIP.TabIndex = 5;
             this.uxLBL_ServerIP.Text = "Server IP: ";
             // 
-            // uxLB_Transactions
+            // uxLB_Activity
             // 
-            this.uxLB_Transactions.FormattingEnabled = true;
-            this.uxLB_Transactions.ItemHeight = 20;
-            this.uxLB_Transactions.Location = new System.Drawing.Point(553, 89);
-            this.uxLB_Transactions.Name = "uxLB_Transactions";
-            this.uxLB_Transactions.Size = new System.Drawing.Size(227, 384);
-            this.uxLB_Transactions.TabIndex = 6;
+            this.uxLB_Activity.FormattingEnabled = true;
+            this.uxLB_Activity.ItemHeight = 20;
+            this.uxLB_Activity.Location = new System.Drawing.Point(553, 89);
+            this.uxLB_Activity.Name = "uxLB_Activity";
+            this.uxLB_Activity.Size = new System.Drawing.Size(227, 384);
+            this.uxLB_Activity.TabIndex = 6;
             // 
             // uxLBL_TransactionList
             // 
             this.uxLBL_TransactionList.AutoSize = true;
             this.uxLBL_TransactionList.Location = new System.Drawing.Point(549, 66);
             this.uxLBL_TransactionList.Name = "uxLBL_TransactionList";
-            this.uxLBL_TransactionList.Size = new System.Drawing.Size(160, 20);
+            this.uxLBL_TransactionList.Size = new System.Drawing.Size(118, 20);
             this.uxLBL_TransactionList.TabIndex = 7;
-            this.uxLBL_TransactionList.Text = "Recent Transactions:";
+            this.uxLBL_TransactionList.Text = "Recent Activity:";
             // 
             // MainForm
             // 
@@ -116,7 +116,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 516);
             this.Controls.Add(this.uxLBL_TransactionList);
-            this.Controls.Add(this.uxLB_Transactions);
+            this.Controls.Add(this.uxLB_Activity);
             this.Controls.Add(this.uxLBL_ServerIP);
             this.Controls.Add(this.uxLBL_UserList);
             this.Controls.Add(this.uxLB_UserList);
@@ -140,7 +140,7 @@
         private System.Windows.Forms.ListBox uxLB_UserList;
         private System.Windows.Forms.Label uxLBL_UserList;
         private System.Windows.Forms.Label uxLBL_ServerIP;
-        private System.Windows.Forms.ListBox uxLB_Transactions;
+        private System.Windows.Forms.ListBox uxLB_Activity;
         private System.Windows.Forms.Label uxLBL_TransactionList;
     }
 }

@@ -94,7 +94,7 @@ namespace Server
                     {
                         //Successful login attempt
                         logger.NormalMessage("User " + loginData.Username + " has logged in");
-                        sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseSuccess, null));
+                        //sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseSuccess, null));
                         sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerSendAccount, acc));
                     }
                     else
