@@ -21,7 +21,7 @@ namespace Server
             Application.SetCompatibleTextRenderingDefault(false);
 
             MainForm = new MainForm();
-            serverController = new ServerController(MainForm.AddActivity);
+            serverController = new ServerController(MainForm.InvokeActivity, MainForm.InvokeUserList, MainForm.InvokeStockList);
             networkHandler = new NetworkHandlerServer();
             Application.Run(MainForm);
         }

@@ -11,8 +11,9 @@ namespace Server
     public class ServerDelegates
     {
         public delegate void ServerHandleEvent(ServerResponse s, Event e);
-        public delegate void LoggerNormalMessage(ServerResponse s, Event e);
-        public delegate void LoggerErrorMessage(ServerResponse s, Event e);
-        public delegate void LogServerActivity(string activity);
+
+        public delegate void UpdateActivityList(string activity);
+        public delegate void UpdateUserList(List<Account> accList);
+        public delegate void UpdateStockList(List<Stock> stockList);
     }
 }

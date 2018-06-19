@@ -15,6 +15,8 @@ namespace Server
     public partial class MainForm : Form
     {
         public List<string> activityList;
+        public List<Account> userList;
+        public List<Stock> stockList;
 
         public MainForm()
         {
@@ -22,7 +24,7 @@ namespace Server
             activityList = new List<string>();
         }
 
-        public void AddActivity(string activity)
+        public void InvokeActivity(string activity)
         {
             if (InvokeRequired)
             {
@@ -34,10 +36,49 @@ namespace Server
             }
         }
 
+        public void InvokeUserList(List<Account> accList)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => UpdateUserList(accList)));
+            }
+            else
+            {
+                UpdateUserList(accList);
+            }
+        }
+
+        public void InvokeStockList(List<Stock> stockList)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => UpdateStockList(stockList)));
+            }
+            else
+            {
+                UpdateStockList(stockList);
+            }
+        }
+
+        private void UpdateUserList(List<Account> accList)
+        {
+            uxLB_UserList.DataSource = accList;
+        }
+
+        private void UpdateStockList(List<Stock> stockList)
+        {
+            uxLB_StockList.DataSource = stockList;
+        }
+
         private void UpdateActivity(string activity)
         {
             activityList.Add(activity.ToString());
             uxLB_Activity.DataSource = new List<string>(activityList);
+        }
+
+        private void BtnMoreActivity_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(uxLB_Activity.SelectedItem.ToString());
         }
     }
 }

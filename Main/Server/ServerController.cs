@@ -15,15 +15,19 @@ namespace Server
 {
     class ServerController
     {
-        ServerDelegates.LogServerActivity logger;
+        ServerDelegates.UpdateActivityList logger;
+        ServerDelegates.UpdateUserList updateUserList;
+        ServerDelegates.UpdateStockList updateStockList;
         List<Account> accountList;
         List<Stock> stockList;
         private const string ACCOUNT_FILE_PATH = "./accounts.txt";
         private const string STOCK_FILE_PATH = "./stocks.txt";
 
-        public ServerController(ServerDelegates.LogServerActivity logMethod)
+        public ServerController(ServerDelegates.UpdateActivityList logMethod, ServerDelegates.UpdateUserList updateUserListMethod, ServerDelegates.UpdateStockList updateStockListMethod)
         {
             logger = logMethod;
+            updateUserList = updateUserListMethod;
+            updateStockList = updateStockListMethod;
             accountList = new List<Account>();
             stockList = new List<Stock>();
             ServerResponse.handleEvent += HandleMessage;

@@ -36,6 +36,9 @@
             this.uxLBL_ServerIP = new System.Windows.Forms.Label();
             this.uxLB_Activity = new System.Windows.Forms.ListBox();
             this.uxLBL_TransactionList = new System.Windows.Forms.Label();
+            this.uxBtn_MoreActivity = new System.Windows.Forms.Button();
+            this.uxBtn_MoreUser = new System.Windows.Forms.Button();
+            this.uxBtn_MoreStock = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // uxLBL_OnlineUsers
@@ -110,11 +113,42 @@
             this.uxLBL_TransactionList.TabIndex = 7;
             this.uxLBL_TransactionList.Text = "Recent Activity:";
             // 
+            // uxBtn_MoreActivity
+            // 
+            this.uxBtn_MoreActivity.Location = new System.Drawing.Point(553, 490);
+            this.uxBtn_MoreActivity.Name = "uxBtn_MoreActivity";
+            this.uxBtn_MoreActivity.Size = new System.Drawing.Size(105, 34);
+            this.uxBtn_MoreActivity.TabIndex = 8;
+            this.uxBtn_MoreActivity.Text = "See More";
+            this.uxBtn_MoreActivity.UseVisualStyleBackColor = true;
+            this.uxBtn_MoreActivity.Click += new System.EventHandler(this.BtnMoreActivity_Click);
+            // 
+            // uxBtn_MoreUser
+            // 
+            this.uxBtn_MoreUser.Location = new System.Drawing.Point(283, 490);
+            this.uxBtn_MoreUser.Name = "uxBtn_MoreUser";
+            this.uxBtn_MoreUser.Size = new System.Drawing.Size(98, 34);
+            this.uxBtn_MoreUser.TabIndex = 9;
+            this.uxBtn_MoreUser.Text = "See More";
+            this.uxBtn_MoreUser.UseVisualStyleBackColor = true;
+            // 
+            // uxBtn_MoreStock
+            // 
+            this.uxBtn_MoreStock.Location = new System.Drawing.Point(13, 490);
+            this.uxBtn_MoreStock.Name = "uxBtn_MoreStock";
+            this.uxBtn_MoreStock.Size = new System.Drawing.Size(94, 34);
+            this.uxBtn_MoreStock.TabIndex = 10;
+            this.uxBtn_MoreStock.Text = "See More";
+            this.uxBtn_MoreStock.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 516);
+            this.ClientSize = new System.Drawing.Size(827, 536);
+            this.Controls.Add(this.uxBtn_MoreStock);
+            this.Controls.Add(this.uxBtn_MoreUser);
+            this.Controls.Add(this.uxBtn_MoreActivity);
             this.Controls.Add(this.uxLBL_TransactionList);
             this.Controls.Add(this.uxLB_Activity);
             this.Controls.Add(this.uxLBL_ServerIP);
@@ -142,6 +176,9 @@
         private System.Windows.Forms.Label uxLBL_ServerIP;
         private System.Windows.Forms.ListBox uxLB_Activity;
         private System.Windows.Forms.Label uxLBL_TransactionList;
+        private System.Windows.Forms.Button uxBtn_MoreActivity;
+        private System.Windows.Forms.Button uxBtn_MoreUser;
+        private System.Windows.Forms.Button uxBtn_MoreStock;
     }
 }
 
