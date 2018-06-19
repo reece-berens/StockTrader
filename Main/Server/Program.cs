@@ -8,7 +8,7 @@ namespace Server
 {
     static class Program
     {
-        public static Form MainForm;
+        public static MainForm MainForm;
         public static ServerController serverController;
         public static NetworkHandlerServer networkHandler;
         /// <summary>

@@ -29,7 +29,7 @@ namespace Client
         {
             account = null;
             logger = new Logger();
-            networkHandler = new NetworkHandlerClient();
+            networkHandler = Program.netHandler;
             NetworkHandlerClient.ClientEventHandler += HandleMessage;
             GUISwitchEvent += GUIHandler;
 

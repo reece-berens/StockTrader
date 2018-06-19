@@ -8,6 +8,8 @@ namespace Client
 {
     static class Program
     {
+        public static ClientController clientController;
+        public static NetworkHandlerClient netHandler;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -17,7 +19,9 @@ namespace Client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ClientController clientController = new ClientController();
+            netHandler = new NetworkHandlerClient();
+            clientController = new ClientController();
+            
         }
     }
 }
