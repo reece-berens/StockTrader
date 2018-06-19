@@ -13,5 +13,6 @@ namespace Server
         public delegate void ServerHandleEvent(ServerResponse s, Event e);
         public delegate void LoggerNormalMessage(ServerResponse s, Event e);
         public delegate void LoggerErrorMessage(ServerResponse s, Event e);
+        public delegate void LogServerActivity(string activity);
     }
 }

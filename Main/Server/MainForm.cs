@@ -24,7 +24,19 @@ namespace Server
 
         public void AddActivity(string activity)
         {
-            activityList.Add(activity);
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => UpdateActivity(activity)));
+            }
+            else
+            {
+                UpdateActivity(activity);
+            }
+        }
+
+        private void UpdateActivity(string activity)
+        {
+            activityList.Add(activity.ToString());
             uxLB_Activity.DataSource = new List<string>(activityList);
         }
     }

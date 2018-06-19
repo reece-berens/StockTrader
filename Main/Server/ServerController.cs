@@ -15,15 +15,15 @@ namespace Server
 {
     class ServerController
     {
-        Logger logger;
+        ServerDelegates.LogServerActivity logger;
         List<Account> accountList;
         List<Stock> stockList;
         private const string ACCOUNT_FILE_PATH = "./accounts.txt";
         private const string STOCK_FILE_PATH = "./stocks.txt";
 
-        public ServerController()
+        public ServerController(ServerDelegates.LogServerActivity logMethod)
         {
-            logger = new Logger();
+            logger = logMethod;
             accountList = new List<Account>();
             stockList = new List<Stock>();
             ServerResponse.handleEvent += HandleMessage;
@@ -63,7 +63,7 @@ namespace Server
                     {
                         acc = new Account(createAccData.Username, createAccData.Password);
                         accountList.Add(acc);
-                        logger.NormalMessage("New user created: " + createAccData.Username);
+                        logger("New user created: " + createAccData.Username);
 
                         //Send success response
                         //sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseSuccess, null));
@@ -73,7 +73,7 @@ namespace Server
                     }
                     else
                     {
-                        logger.ErrorMessage("User attempted to create an account with the same username as one that exists.");
+                        logger("User attempted to create an account with the same username as one that exists.");
                         sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseError, "Account already exists. Try again."));
                     }
                     break;
@@ -93,19 +93,19 @@ namespace Server
                     if (loginData.Password == acc.Password)
                     {
                         //Successful login attempt
-                        logger.NormalMessage("User " + loginData.Username + " has logged in");
+                        logger("User " + loginData.Username + " has logged in");
                         //sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseSuccess, null));
                         sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerSendAccount, acc));
                     }
                     else
                     {
                         //Unsuccessful login attempt
-                        logger.ErrorMessage("User " + loginData.Username + " made bad login attempt");
+                        logger("User " + loginData.Username + " made bad login attempt");
                         sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseError, "We couldn't find that username/password combo. Try again."));
                     }
                     break;
                 case Event.EventTypeEnum.NULLEVENTENUM:
-                    logger.ErrorMessage("Null event received in ServerHandler.HandleMessage()");
+                    logger("Null event received in ServerHandler.HandleMessage()");
                     break;
             }
         }
