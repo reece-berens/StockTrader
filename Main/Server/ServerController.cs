@@ -15,7 +15,7 @@ namespace Server
 {
     class ServerController
     {
-        ServerDelegates.UpdateActivityList logger;
+        ServerDelegates.UpdateActivityList updateActivityList;
         ServerDelegates.UpdateUserList updateUserList;
         ServerDelegates.UpdateStockList updateStockList;
         List<Account> accountList;
@@ -25,7 +25,7 @@ namespace Server
 
         public ServerController(ServerDelegates.UpdateActivityList logMethod, ServerDelegates.UpdateUserList updateUserListMethod, ServerDelegates.UpdateStockList updateStockListMethod)
         {
-            logger = logMethod;
+            updateActivityList = logMethod;
             updateUserList = updateUserListMethod;
             updateStockList = updateStockListMethod;
             accountList = new List<Account>();
@@ -37,6 +37,10 @@ namespace Server
 
         ~ServerController()
         {
+            foreach (Account a in accountList)
+            {
+                a.IsOnline = false;
+            }
             WriteData();
         }
 
@@ -66,8 +70,9 @@ namespace Server
                     if (canCreate)
                     {
                         acc = new Account(createAccData.Username, createAccData.Password);
+                        acc.IsOnline = true;
                         accountList.Add(acc);
-                        logger("New user created: " + createAccData.Username);
+                        updateActivityList("New user created: " + createAccData.Username);
 
                         //Send success response
                         //sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseSuccess, null));
@@ -77,7 +82,7 @@ namespace Server
                     }
                     else
                     {
-                        logger("User attempted to create an account with the same username as one that exists.");
+                        updateActivityList("User attempted to create an account with the same username as one that exists.");
                         sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseError, "Account already exists. Try again."));
                     }
                     break;
@@ -97,19 +102,32 @@ namespace Server
                     if (loginData.Password == acc.Password)
                     {
                         //Successful login attempt
-                        logger("User " + loginData.Username + " has logged in");
+                        updateActivityList("User " + loginData.Username + " has logged in");
+                        acc.IsOnline = true;
                         //sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseSuccess, null));
                         sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerSendAccount, acc));
                     }
                     else
                     {
                         //Unsuccessful login attempt
-                        logger("User " + loginData.Username + " made bad login attempt");
+                        updateActivityList("User " + loginData.Username + " made bad login attempt");
                         sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseError, "We couldn't find that username/password combo. Try again."));
                     }
                     break;
+                case Event.EventTypeEnum.UserLogOff:
+                    LoginEventData logOffData = JsonConvert.DeserializeObject<LoginEventData>(e.EventData.ToString());
+                    foreach (Account a in accountList)
+                    {
+                        if (a.Username == logOffData.Username)
+                        {
+                            updateActivityList(a.Username + " has logged off");
+                            a.IsOnline = false;
+                            break;
+                        }
+                    }
+                    break;
                 case Event.EventTypeEnum.NULLEVENTENUM:
-                    logger("Null event received in ServerHandler.HandleMessage()");
+                    updateActivityList("Null event received in ServerHandler.HandleMessage()");
                     break;
             }
         }

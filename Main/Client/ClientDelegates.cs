@@ -12,6 +12,6 @@ namespace Client
     public class ClientDelegates
     {
         public delegate void ClientHandleEvent(Event e);
-        public delegate void ClientSwitchGUI(Form curForm);
+        public delegate void ClientSwitchGUI();
     }
 }

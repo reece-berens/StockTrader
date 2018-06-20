@@ -13,11 +13,6 @@ namespace Client
 {
     public class ClientController
     {
-        public enum GUIHandleEnum { AttemptingLogin, LoginSuccessful, OpenStockDetailWindow, CloseStockDetailWindow, Logout };
-        public GUIHandleEnum ClientGUIState;
-
-        public event ClientDelegates.ClientSwitchGUI GUISwitchEvent;
-
         Logger logger;
         Account account;
         NetworkHandlerClient networkHandler;
@@ -31,10 +26,15 @@ namespace Client
             logger = new Logger();
             networkHandler = Program.netHandler;
             NetworkHandlerClient.ClientEventHandler += HandleMessage;
-            GUISwitchEvent += GUIHandler;
 
-            ClientGUIState = GUIHandleEnum.AttemptingLogin;
-            GUIHandler(null);
+            Program.ClientGUIState = Program.GUIHandleEnum.AttemptingLogin;
+            Program.GUIHandler();
+        }
+
+        ~ClientController()
+        {
+            Event e = new Event(Event.EventTypeEnum.UserLogOff, new LoginEventData(account.Username, ""));
+            networkHandler.SendMessage(e);
         }
 
         public void HandleMessage(Event e)
@@ -52,73 +52,19 @@ namespace Client
                 case Event.EventTypeEnum.ServerSendAccount:
                     //Get user's data from the server
                     account = e.GetData<Account>();
+                    Program.ClientGUIState = Program.GUIHandleEnum.LoginSuccessful;
+                    Program.GUIHandler();
                     break;
 
                 case Event.EventTypeEnum.NULLEVENTENUM:
                     logger.ErrorMessage("Null event received in ClientHandler.HandleMessage");
                     break;
             }
-            //MainLoop();
         }
 
-        public void CreateAccount()
+        public void CloseLogin(LoginForm lForm)
         {
-            string u = logger.PromptUser("Enter Username: ");
-            string p = logger.PromptUser("Enter Password: ");
-            networkHandler.SendMessage(new Event(Event.EventTypeEnum.CreateAccount, new LoginEventData(u, p)));
-        }
-
-        public void Login()
-        {
-            string u = logger.PromptUser("Enter Username: ");
-            string p = logger.PromptUser("Enter Password: ");
-            networkHandler.SendMessage(new Event(Event.EventTypeEnum.LoginAttempt, new LoginEventData(u, p)));
-        }
-
-        public void MainLoop()
-        {
-            while (account == null)
-            {
-                string createOrLogin = logger.PromptUser("(C)reate Account or (L)ogin: ").ToUpper();
-                if (createOrLogin == "C")
-                {
-                    CreateAccount();
-                }
-                else if (createOrLogin == "L")
-                {
-                    Login();
-                }
-                else
-                {
-                    logger.ErrorMessage("Invalid command. Try again");
-                }
-                Thread.Sleep(1000);
-            }
-            logger.NormalMessage("You got an account! username is " + account.Username);
-        }
-
-        public void GUIHandler(Form curForm)
-        {
-            switch (ClientGUIState)
-            {
-                case GUIHandleEnum.AttemptingLogin:
-                    //Open login window
-                    curForm = new LoginForm();
-                    curForm.ShowDialog();
-                    break;
-                case GUIHandleEnum.LoginSuccessful:
-                    //Close login and open main
-                    break;
-                case GUIHandleEnum.OpenStockDetailWindow:
-                    //Open a new detail window
-                    break;
-                case GUIHandleEnum.CloseStockDetailWindow:
-                    //Remove detail window from list and close window
-                    break;
-                case GUIHandleEnum.Logout:
-                    //Close menu and all detail windows and open login window
-                    break;
-            }
+            
         }
     }
 }

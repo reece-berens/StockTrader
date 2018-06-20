@@ -16,5 +16,17 @@ namespace Client
         {
             InitializeComponent();
         }
+
+        private void MainForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            Program.ClientGUIState = Program.GUIHandleEnum.Logout;
+            Program.GUIHandler();
+        }
+
+        private void BtnLogout_Click(object sender, EventArgs e)
+        {
+            Program.ClientGUIState = Program.GUIHandleEnum.Logout;
+            Program.GUIHandler();
+        }
     }
 }

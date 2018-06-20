@@ -10,7 +10,7 @@ namespace CoreLib
 {
     public class Event
     {
-        public enum EventTypeEnum { NULLEVENTENUM, CreateAccount, LoginAttempt, ServerResponseSuccess, ServerResponseError, ServerSendAccount };
+        public enum EventTypeEnum { NULLEVENTENUM, CreateAccount, LoginAttempt, ServerResponseSuccess, ServerResponseError, ServerSendAccount, UserLogOff };
 
         public static Event NULLEVENT = new Event(EventTypeEnum.NULLEVENTENUM, null);
 

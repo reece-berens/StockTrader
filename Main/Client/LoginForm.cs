@@ -31,5 +31,10 @@ namespace Client
             LoginEventData eData = new LoginEventData(uxTB_Username.Text, uxTB_Password.Text);
             Program.netHandler.SendMessage(new Event(Event.EventTypeEnum.LoginAttempt, eData));
         }
+
+        private void LoginForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
