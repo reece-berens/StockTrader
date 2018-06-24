@@ -9,7 +9,6 @@ namespace Client
     static class Program
     {
         public enum GUIHandleEnum { AttemptingLogin, LoginSuccessful, OpenStockDetailWindow, CloseStockDetailWindow, Logout };
-        public static GUIHandleEnum ClientGUIState;
 
         public static ClientController clientController;
         public static NetworkHandlerClient netHandler;
@@ -33,7 +32,7 @@ namespace Client
             Application.Run(startForm);
         }
 
-        public static void GUIHandler()
+        public static void GUIHandler(GUIHandleEnum ClientGUIState)
         {
             switch (ClientGUIState)
             {

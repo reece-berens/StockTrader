@@ -14,7 +14,7 @@ namespace Client
     public class ClientController
     {
         Logger logger;
-        Account account;
+        public Account userAccount;
         NetworkHandlerClient networkHandler;
         public Form curForm;
         public Form toOpen;
@@ -22,18 +22,17 @@ namespace Client
 
         public ClientController()
         {
-            account = null;
+            userAccount = null;
             logger = new Logger();
             networkHandler = Program.netHandler;
-            NetworkHandlerClient.ClientEventHandler += HandleMessage;
+            NetworkHandlerClient.clientHandleEvent += HandleMessage;
 
-            Program.ClientGUIState = Program.GUIHandleEnum.AttemptingLogin;
-            Program.GUIHandler();
+            Program.GUIHandler(Program.GUIHandleEnum.AttemptingLogin);
         }
 
         ~ClientController()
         {
-            Event e = new Event(Event.EventTypeEnum.UserLogOff, new LoginEventData(account.Username, ""));
+            Event e = new Event(Event.EventTypeEnum.UserLogOff, new LoginEventData(userAccount.Username, ""));
             networkHandler.SendMessage(e);
         }
 
@@ -51,15 +50,19 @@ namespace Client
 
                 case Event.EventTypeEnum.ServerSendAccount:
                     //Get user's data from the server
-                    account = e.GetData<Account>();
-                    Program.ClientGUIState = Program.GUIHandleEnum.LoginSuccessful;
-                    Program.GUIHandler();
+                    userAccount = e.GetData<Account>();
+                    Program.GUIHandler(Program.GUIHandleEnum.LoginSuccessful);
                     break;
 
                 case Event.EventTypeEnum.NULLEVENTENUM:
                     logger.ErrorMessage("Null event received in ClientHandler.HandleMessage");
                     break;
             }
+        }
+
+        public void HandleLogout()
+        {
+
         }
 
         public void CloseLogin(LoginForm lForm)
