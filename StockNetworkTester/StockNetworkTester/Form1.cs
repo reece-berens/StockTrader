@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 namespace StockNetworkTester
 {
     public partial class Form1 : Form
@@ -27,9 +30,9 @@ namespace StockNetworkTester
 
         private void GetPrices_Click(object sender, EventArgs e)
         {
-            
             stockNetworkHandler.SingleStock = uxTBAddStock.Text.ToUpper();
             string resp = stockNetworkHandler.GetStockData();
+            StockRequest sr = GetData<StockRequest>(resp);
             MessageBox.Show(resp);
         }
 
@@ -72,6 +75,11 @@ namespace StockNetworkTester
                     }
                 }
             }
+        }
+
+        public T GetData<T>(string obj)
+        {
+            return ((JObject)obj).ToObject<T>();
         }
     }
 }

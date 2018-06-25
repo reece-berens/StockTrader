@@ -15,6 +15,7 @@ namespace StockNetworkTester
         private string _url;
         private List<string> _stockList;
         private string _singleStock;
+        private string response;
 
         public NetworkHandler()
         {
@@ -27,12 +28,11 @@ namespace StockNetworkTester
         {
             //Build URL to send
             string toSend = BuildURL();
-            Console.WriteLine(_url);
+            //Console.WriteLine(_url);
 
 
             //Send URL and return data
-            string response;
-            response = new WebClient().DownloadString(toSend);
+            response = new WebClient().DownloadString("https://api.iextrading.com/1.0/stock/msft/chart/1m");
             return response;
         }
 
@@ -73,6 +73,8 @@ namespace StockNetworkTester
             ret += "&apikey=" + _apiKey;
             return ret;
         }
+
+        
 
         #region Getters/Setters
         public List<string> StockList

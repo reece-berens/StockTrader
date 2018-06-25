@@ -6,13 +6,30 @@ using System.Threading.Tasks;
 
 namespace StockNetworkTester
 {
-    class Stock
+    public class Stock
     {
+        private string _symbol;
         private double _price;
         private int _shares;
 
+        public Stock()
+        {
+
+        }
 
         #region Getters/Setters
+        public string Symbol
+        {
+            get
+            {
+                return _symbol;
+            }
+            set
+            {
+                _symbol = value;
+            }
+        }
+
         public double Price
         {
             get
