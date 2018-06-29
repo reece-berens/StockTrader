@@ -33,7 +33,5 @@ namespace StockNetworkTester
         {
             return label + ": " + close;
         }
-
- 
     }
 }

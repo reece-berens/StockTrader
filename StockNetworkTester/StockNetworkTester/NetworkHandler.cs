@@ -32,7 +32,7 @@ namespace StockNetworkTester
 
 
             //Send URL and return data
-            response = new WebClient().DownloadString("https://api.iextrading.com/1.0/stock/msft/chart/1m");
+            response = new WebClient().DownloadString("https://api.iextrading.com/1.0/stock/msft/price");
             return response;
         }
 

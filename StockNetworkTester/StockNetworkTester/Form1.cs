@@ -32,7 +32,7 @@ namespace StockNetworkTester
         {
             stockNetworkHandler.SingleStock = uxTBAddStock.Text.ToUpper();
             string resp = stockNetworkHandler.GetStockData();
-            StockRequest sr = GetData<StockRequest>(resp);
+            //List<StockRequest> sr = GetData<List<StockRequest>>(resp);
             MessageBox.Show(resp);
         }
 
@@ -79,7 +79,8 @@ namespace StockNetworkTester
 
         public T GetData<T>(string obj)
         {
-            return ((JObject)obj).ToObject<T>();
+            JValue o = (JValue)obj;
+            return (o).ToObject<T>();
         }
     }
 }
