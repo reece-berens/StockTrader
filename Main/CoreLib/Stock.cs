@@ -21,12 +21,21 @@ namespace CoreLib
             //Do an update with StockNetworkTester items, probably just current data for now
         }
 
+        public override string ToString()
+        {
+            return _symbol + ": " + _amt.ToString("C2");
+        }
+
         #region Getters/Setters
         public string TickerSymbol
         {
             get
             {
                 return _symbol;
+            }
+            set
+            {
+                _symbol = value;
             }
         }
 
@@ -35,6 +44,10 @@ namespace CoreLib
             get
             {
                 return _amt;
+            }
+            set
+            {
+                _amt = value;
             }
         }
         #endregion

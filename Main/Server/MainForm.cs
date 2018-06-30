@@ -62,12 +62,12 @@ namespace Server
 
         private void UpdateUserList(List<Account> accList)
         {
-            uxLB_UserList.DataSource = accList;
+            uxLB_UserList.DataSource = new List<Account>(accList);
         }
 
         private void UpdateStockList(List<Stock> stockList)
         {
-            uxLB_StockList.DataSource = stockList;
+            uxLB_StockList.DataSource = new List<Stock>(stockList);
         }
 
         private void UpdateActivity(string activity)
@@ -79,6 +79,12 @@ namespace Server
         private void BtnMoreActivity_Click(object sender, EventArgs e)
         {
             MessageBox.Show(uxLB_Activity.SelectedItem.ToString());
+        }
+
+        private void BtnAddStock_Click(object sender, EventArgs e)
+        {
+            string sym = uxTB_AddStock.Text;
+            Program.serverController.AddStock(sym);
         }
     }
 }

@@ -33,6 +33,8 @@ namespace Server
             ServerResponse.handleEvent += HandleMessage;
 
             ReadData();
+            updateStockList(stockList);
+            updateUserList(accountList);
         }
 
         ~ServerController()
@@ -73,6 +75,7 @@ namespace Server
                         acc.IsOnline = true;
                         accountList.Add(acc);
                         updateActivityList("New user created: " + createAccData.Username);
+                        updateUserList(accountList);
 
                         //Send success response
                         //sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseSuccess, null));
@@ -104,7 +107,8 @@ namespace Server
                         //Successful login attempt
                         updateActivityList("User " + loginData.Username + " has logged in");
                         acc.IsOnline = true;
-                        //sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseSuccess, null));
+                        updateUserList(accountList);
+                        
                         sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerSendAccount, acc));
                     }
                     else
@@ -130,6 +134,16 @@ namespace Server
                     updateActivityList("Null event received in ServerHandler.HandleMessage()");
                     break;
             }
+        }
+
+        public void AddStock(string StockSymbol)
+        {
+            Stock tempStock = new Stock(StockSymbol.ToUpper());
+            stockList.Add(tempStock);
+            //Get price of stock
+            double tempPrice = Program.networkHandlerStock.RequestPrice(StockSymbol);
+            tempStock.StockPrice = tempPrice;
+            updateStockList(stockList);
         }
 
         private void ReadData()

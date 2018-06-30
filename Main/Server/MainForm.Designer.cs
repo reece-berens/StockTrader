@@ -39,6 +39,8 @@
             this.uxBtn_MoreActivity = new System.Windows.Forms.Button();
             this.uxBtn_MoreUser = new System.Windows.Forms.Button();
             this.uxBtn_MoreStock = new System.Windows.Forms.Button();
+            this.uxBtn_AddStock = new System.Windows.Forms.Button();
+            this.uxTB_AddStock = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // uxLBL_OnlineUsers
@@ -141,11 +143,30 @@
             this.uxBtn_MoreStock.Text = "See More";
             this.uxBtn_MoreStock.UseVisualStyleBackColor = true;
             // 
+            // uxBtn_AddStock
+            // 
+            this.uxBtn_AddStock.Location = new System.Drawing.Point(125, 490);
+            this.uxBtn_AddStock.Name = "uxBtn_AddStock";
+            this.uxBtn_AddStock.Size = new System.Drawing.Size(97, 34);
+            this.uxBtn_AddStock.TabIndex = 11;
+            this.uxBtn_AddStock.Text = "Add Stock";
+            this.uxBtn_AddStock.UseVisualStyleBackColor = true;
+            this.uxBtn_AddStock.Click += new System.EventHandler(this.BtnAddStock_Click);
+            // 
+            // uxTB_AddStock
+            // 
+            this.uxTB_AddStock.Location = new System.Drawing.Point(601, 12);
+            this.uxTB_AddStock.Name = "uxTB_AddStock";
+            this.uxTB_AddStock.Size = new System.Drawing.Size(137, 26);
+            this.uxTB_AddStock.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 536);
+            this.Controls.Add(this.uxTB_AddStock);
+            this.Controls.Add(this.uxBtn_AddStock);
             this.Controls.Add(this.uxBtn_MoreStock);
             this.Controls.Add(this.uxBtn_MoreUser);
             this.Controls.Add(this.uxBtn_MoreActivity);
@@ -179,6 +200,8 @@
         private System.Windows.Forms.Button uxBtn_MoreActivity;
         private System.Windows.Forms.Button uxBtn_MoreUser;
         private System.Windows.Forms.Button uxBtn_MoreStock;
+        private System.Windows.Forms.Button uxBtn_AddStock;
+        private System.Windows.Forms.TextBox uxTB_AddStock;
     }
 }
 
