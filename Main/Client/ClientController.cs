@@ -16,16 +16,15 @@ namespace Client
         Logger logger;
         public Account userAccount;
         NetworkHandlerClient networkHandler;
-        public Form curForm;
-        public Form toOpen;
-        public Form toClose;
 
         public ClientController()
         {
             userAccount = null;
             logger = new Logger();
             networkHandler = Program.netHandler;
-            NetworkHandlerClient.clientHandleEvent += HandleMessage;
+            DelegateMessages.clientHandleEvent_Msg += HandleMessage;
+            DelegateMessages.clientStockRequest_Msg += StockRequest;
+            DelegateMessages.clientLogout_Msg += HandleLogout;
 
             Program.GUIHandler(Program.GUIHandleEnum.AttemptingLogin);
         }
@@ -40,10 +39,6 @@ namespace Client
         {
             switch (e.EventType)
             {
-                case Event.EventTypeEnum.ServerResponseSuccess:
-                    //Something you passed get back correctly
-                    break;
-
                 case Event.EventTypeEnum.ServerResponseError:
                     logger.ErrorMessage(e.EventData.ToString());
                     break;
@@ -54,20 +49,38 @@ namespace Client
                     Program.GUIHandler(Program.GUIHandleEnum.LoginSuccessful);
                     break;
 
+                case Event.EventTypeEnum.ServerSendStock:
+                    List<Stock> sList = userAccount.AccountPortfolio.StockList;
+                    string tempSym = ((StockData)e.EventData).stock.TickerSymbol;
+                    for (int i = 0; i < sList.Count; i++)
+                    {
+                        Stock s = sList.ElementAt(i);
+                        if (s.TickerSymbol == tempSym)
+                        {
+                            s = new Stock(((StockData)e.EventData).stock);
+                            break;
+                        }
+                    }
+                    break;
+
                 case Event.EventTypeEnum.NULLEVENTENUM:
                     logger.ErrorMessage("Null event received in ClientHandler.HandleMessage");
                     break;
             }
         }
 
-        public void HandleLogout()
+        public void StockRequest(string sym)
         {
-
+            StockRequestData tempData = new StockRequestData(sym);
+            Event e = new Event(Event.EventTypeEnum.ClientStockRequest, tempData);
+            networkHandler.SendMessage(e);
         }
 
-        public void CloseLogin(LoginForm lForm)
+        private void HandleLogout()
         {
-            
+            LoginEventData l = new LoginEventData(Program.clientController.userAccount.Username, "");
+            Event ev = new Event(CoreLib.Event.EventTypeEnum.UserLogOff, l);
+            networkHandler.SendMessage(ev);
         }
     }
 }

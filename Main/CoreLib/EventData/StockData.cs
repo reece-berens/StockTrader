@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CoreLib.EventData
 {
-    public interface IEventData
+    public class StockData : IEventData
     {
+        public Stock stock;
+
+        public StockData(Stock stock)
+        {
+            this.stock = stock;
+        }
     }
 }

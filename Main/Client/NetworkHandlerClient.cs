@@ -13,7 +13,6 @@ namespace Client
     class NetworkHandlerClient
     {
         private WebSocket clientSocket;
-        public static event ClientDelegates.ClientHandleEvent clientHandleEvent;
 
         public NetworkHandlerClient()
         {
@@ -29,7 +28,7 @@ namespace Client
 
         private void ReceiveMessage(object received, MessageEventArgs e)
         {
-            clientHandleEvent.Invoke(FromJson(e.Data));
+            DelegateMessages.Handle_Call(FromJson(e.Data));
         }
 
         public void SendMessage(Event e)

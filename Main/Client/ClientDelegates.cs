@@ -14,5 +14,7 @@ namespace Client
         public delegate void ClientHandleEvent(Event e);
         public delegate void ClientSwitchGUI();
         public delegate void ClientLogout();
+
+        public delegate void ClientStockRequest(string s);
     }
 }

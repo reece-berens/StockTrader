@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="ClientController.cs" />
     <Compile Include="ClientDelegates.cs" />
+    <Compile Include="DelegateMessages.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>

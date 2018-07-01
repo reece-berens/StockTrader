@@ -10,15 +10,25 @@ namespace CoreLib
 {
     public class Event
     {
-        public enum EventTypeEnum { NULLEVENTENUM, CreateAccount, LoginAttempt, ServerResponseSuccess, ServerResponseError, ServerSendAccount, UserLogOff };
+        public enum EventTypeEnum
+        {
+            NULLEVENTENUM,
+            CreateAccount,
+            LoginAttempt,
+            ServerResponseError,
+            ServerSendAccount,
+            UserLogOff,
+            ClientStockRequest,
+            ServerSendStock
+        };
 
         public static Event NULLEVENT = new Event(EventTypeEnum.NULLEVENTENUM, null);
 
         private EventTypeEnum _eventType;
 
-        private object _eventData;
+        private EventData.IEventData _eventData;
 
-        public Event(EventTypeEnum eType, object eData)
+        public Event(EventTypeEnum eType, EventData.IEventData eData)
         {
             _eventType = eType;
             _eventData = eData;
@@ -42,7 +52,7 @@ namespace CoreLib
             }
         }
 
-        public object EventData
+        public EventData.IEventData EventData
         {
             get
             {

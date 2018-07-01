@@ -14,6 +14,13 @@ namespace CoreLib
         public Stock(string TickerSymbol)
         {
             _symbol = TickerSymbol;
+            _amt = 0;
+        }
+
+        public Stock(Stock stock)
+        {
+            _symbol = stock.TickerSymbol;
+            _amt = stock.StockPrice;
         }
 
         public void UpdateStock()

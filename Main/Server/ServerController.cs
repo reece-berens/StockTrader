@@ -86,7 +86,7 @@ namespace Server
                     else
                     {
                         updateActivityList("User attempted to create an account with the same username as one that exists.");
-                        sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseError, "Account already exists. Try again."));
+                        sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseError, new ServerErrorData("Account already exists. Try again.")));
                     }
                     break;
                 case Event.EventTypeEnum.LoginAttempt:
@@ -109,13 +109,13 @@ namespace Server
                         acc.IsOnline = true;
                         updateUserList(accountList);
                         
-                        sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerSendAccount, acc));
+                        sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerSendAccount, new AccountData(acc)));
                     }
                     else
                     {
                         //Unsuccessful login attempt
                         updateActivityList("User " + loginData.Username + " made bad login attempt");
-                        sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseError, "We couldn't find that username/password combo. Try again."));
+                        sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseError, new ServerErrorData("We couldn't find that username/password combo. Try again.")));
                     }
                     break;
                 case Event.EventTypeEnum.UserLogOff:
