@@ -15,6 +15,7 @@ namespace CoreLib
         {
             _symbol = TickerSymbol;
             _amt = 0;
+            UpdateStock();
         }
 
         public Stock(Stock stock)
@@ -25,7 +26,7 @@ namespace CoreLib
 
         public void UpdateStock()
         {
-            //Do an update with StockNetworkTester items, probably just current data for now
+            _amt = NetworkHandlerStock.RequestPrice(_symbol);
         }
 
         public override string ToString()

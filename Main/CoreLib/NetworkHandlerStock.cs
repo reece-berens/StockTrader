@@ -6,19 +6,14 @@ using System.Threading.Tasks;
 
 using System.Net;
 
-namespace Server
+namespace CoreLib
 {
-    public class NetworkHandlerStock
+    public static class NetworkHandlerStock
     {
-        private string _beginURL = "https://api.iextrading.com/1.0/stock/";
-        private string _endURL = "/price";
+        private static string _beginURL = "https://api.iextrading.com/1.0/stock/";
+        private static string _endURL = "/price";
 
-        public NetworkHandlerStock()
-        {
-
-        }
-
-        public double RequestPrice(string StockSymbol)
+        public static double RequestPrice(string StockSymbol)
         {
             string response = new WebClient().DownloadString(_beginURL + StockSymbol.ToLower() + _endURL);
             double temp = -1;

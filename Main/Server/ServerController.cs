@@ -54,7 +54,6 @@ namespace Server
             {
                 case Event.EventTypeEnum.CreateAccount:
                     //Check list of all accounts and make sure the username isn't taken. If not, send new account
-
                     LoginEventData createAccData = JsonConvert.DeserializeObject<LoginEventData>(e.EventData.ToString());
                     bool canCreate = true;
                     if (accountList == null)
@@ -89,6 +88,7 @@ namespace Server
                         sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseError, new ServerErrorData("Account already exists. Try again.")));
                     }
                     break;
+
                 case Event.EventTypeEnum.LoginAttempt:
                     //Find if the username exits. If so, make sure the password is correct. Send account data
                     bool found = false;
@@ -118,6 +118,7 @@ namespace Server
                         sender.SendResponseToClient(new Event(Event.EventTypeEnum.ServerResponseError, new ServerErrorData("We couldn't find that username/password combo. Try again.")));
                     }
                     break;
+
                 case Event.EventTypeEnum.UserLogOff:
                     LoginEventData logOffData = JsonConvert.DeserializeObject<LoginEventData>(e.EventData.ToString());
                     foreach (Account a in accountList)
@@ -126,10 +127,40 @@ namespace Server
                         {
                             updateActivityList(a.Username + " has logged off");
                             a.IsOnline = false;
+                            updateUserList(accountList);
                             break;
                         }
                     }
                     break;
+
+                case Event.EventTypeEnum.ClientStockRequest:
+                    StockRequestData reqData = JsonConvert.DeserializeObject<StockRequestData>(e.EventData.ToString());
+                    string reqSymbol = reqData.StockSymbol;
+                    bool inStockList = false;
+                    Stock reqStockToSend = new Stock("NULL");
+                    for (int i = 0; i < stockList.Count; i++)
+                    {
+                        string tStock = stockList.ElementAt(i).TickerSymbol;
+                        if (tStock == reqSymbol)
+                        {
+                            inStockList = true;
+                            stockList.ElementAt(i).UpdateStock();
+                            reqStockToSend = stockList.ElementAt(i);
+                            break;
+                        }
+                    }
+                    if (!inStockList)
+                    {
+                        Stock tStock = new Stock(reqSymbol);
+                        reqStockToSend = tStock;
+                        stockList.Add(tStock);
+                    }
+                    StockData sd = new StockData(reqStockToSend);
+                    Event reqEventToSend = new Event(Event.EventTypeEnum.ServerSendStock, sd);
+                    sender.SendResponseToClient(reqEventToSend);
+                    updateStockList(stockList);
+                    break;
+
                 case Event.EventTypeEnum.NULLEVENTENUM:
                     updateActivityList("Null event received in ServerHandler.HandleMessage()");
                     break;
@@ -141,8 +172,6 @@ namespace Server
             Stock tempStock = new Stock(StockSymbol.ToUpper());
             stockList.Add(tempStock);
             //Get price of stock
-            double tempPrice = Program.networkHandlerStock.RequestPrice(StockSymbol);
-            tempStock.StockPrice = tempPrice;
             updateStockList(stockList);
         }
 

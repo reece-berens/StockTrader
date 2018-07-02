@@ -26,7 +26,7 @@ namespace CoreLib
 
         private EventTypeEnum _eventType;
 
-        private EventData.IEventData _eventData;
+        private object _eventData;
 
         public Event(EventTypeEnum eType, EventData.IEventData eData)
         {
@@ -52,7 +52,7 @@ namespace CoreLib
             }
         }
 
-        public EventData.IEventData EventData
+        public object EventData
         {
             get
             {

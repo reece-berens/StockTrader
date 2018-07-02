@@ -11,7 +11,6 @@ namespace Server
         public static MainForm MainForm;
         public static ServerController serverController;
         public static NetworkHandlerServer networkHandler;
-        public static NetworkHandlerStock networkHandlerStock;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -24,7 +23,6 @@ namespace Server
             MainForm = new MainForm();
             serverController = new ServerController(MainForm.InvokeActivity, MainForm.InvokeUserList, MainForm.InvokeStockList);
             networkHandler = new NetworkHandlerServer();
-            networkHandlerStock = new NetworkHandlerStock();
             Application.Run(MainForm);
         }
     }
