@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Newtonsoft.Json;
+
 namespace CoreLib
 {
     public class Stock
@@ -11,11 +13,15 @@ namespace CoreLib
         private string _symbol;
         private double _amt;
 
+        [JsonConstructor]
+        public Stock() { }
+
         public Stock(string TickerSymbol)
         {
             _symbol = TickerSymbol;
             _amt = 0;
-            UpdateStock();
+            if (_symbol != "NULL")
+                UpdateStock();
         }
 
         public Stock(Stock stock)

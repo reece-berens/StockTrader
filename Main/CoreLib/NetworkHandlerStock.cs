@@ -15,7 +15,8 @@ namespace CoreLib
 
         public static double RequestPrice(string StockSymbol)
         {
-            string response = new WebClient().DownloadString(_beginURL + StockSymbol.ToLower() + _endURL);
+            string fullURL = _beginURL + StockSymbol.ToLower() + _endURL;
+            string response = new WebClient().DownloadString(fullURL);
             double temp = -1;
             try
             {

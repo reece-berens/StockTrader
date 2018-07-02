@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 using CoreLib;
 using WebSocketSharp;
@@ -18,6 +18,11 @@ namespace Client
         {
             clientSocket = new WebSocket("ws://localhost:2411/Tester");
             clientSocket.OnMessage += ReceiveMessage;
+            clientSocket.OnClose += (sender, e) =>
+            {
+                Thread.Sleep(1000);
+                clientSocket.Connect();
+            };
             clientSocket.Connect();
         }
 

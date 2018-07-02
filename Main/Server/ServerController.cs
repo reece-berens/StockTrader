@@ -135,7 +135,7 @@ namespace Server
 
                 case Event.EventTypeEnum.ClientStockRequest:
                     StockRequestData reqData = JsonConvert.DeserializeObject<StockRequestData>(e.EventData.ToString());
-                    string reqSymbol = reqData.StockSymbol;
+                    string reqSymbol = reqData.StockSymbol.ToUpper();
                     bool inStockList = false;
                     Stock reqStockToSend = new Stock("NULL");
                     for (int i = 0; i < stockList.Count; i++)

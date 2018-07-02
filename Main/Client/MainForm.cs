@@ -39,7 +39,7 @@ namespace Client
         private void BtnAddStock_Click(object sender, EventArgs e)
         {
             string tempSym = uxTB_StockSym.Text;
-            
+            DelegateMessages.StockRequest_Call(tempSym);
         }
     }
 }
