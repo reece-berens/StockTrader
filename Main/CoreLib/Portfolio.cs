@@ -11,14 +11,20 @@ namespace CoreLib
         private double _cash;
         private double _investments;
         private double _overallAmt;
-        private List<Stock> _stockList;
+        private List<KeyValuePair<Stock, int>> _investmentList;
+        private List<Stock> _watchList;
 
         public Portfolio(double cashAmt)
         {
             _cash = cashAmt;
             _investments = 0;
             _overallAmt = cashAmt;
-            _stockList = new List<Stock>();
+            _investmentList = new List<KeyValuePair<Stock, int>>();
+        }
+
+        public override string ToString()
+        {
+            return _overallAmt.ToString("C2");
         }
 
         #region Getters/Setters
@@ -59,15 +65,27 @@ namespace CoreLib
             }
         }
 
-        public List<Stock> StockList
+        public List<KeyValuePair<Stock, int>> InvestmentList
         {
             get
             {
-                return _stockList;
+                return _investmentList;
             }
             set
             {
-                _stockList = value;
+                _investmentList = value;
+            }
+        }
+
+        public List<Stock> WatchList
+        {
+            get
+            {
+                return _watchList;
+            }
+            set
+            {
+                _watchList = value;
             }
         }
         #endregion

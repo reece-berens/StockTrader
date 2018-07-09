@@ -31,8 +31,11 @@ namespace Client
 
         ~ClientController()
         {
-            Event e = new Event(Event.EventTypeEnum.UserLogOff, new LoginEventData(userAccount.Username, ""));
-            networkHandler.SendMessage(e);
+            if (userAccount != null)
+            {
+                Event e = new Event(Event.EventTypeEnum.UserLogOff, new LoginEventData(userAccount.Username, ""));
+                networkHandler.SendMessage(e);
+            }
         }
 
         public void HandleMessage(Event e)
@@ -79,8 +82,9 @@ namespace Client
         private void HandleLogout()
         {
             LoginEventData l = new LoginEventData(Program.clientController.userAccount.Username, "");
-            Event ev = new Event(CoreLib.Event.EventTypeEnum.UserLogOff, l);
+            Event ev = new Event(Event.EventTypeEnum.UserLogOff, l);
             networkHandler.SendMessage(ev);
+            Program.clientController.userAccount = null;
         }
     }
 }
